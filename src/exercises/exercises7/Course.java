@@ -2,41 +2,41 @@ package exercises.exercises7;
 
 public class Course {
 
-	
+
 
 	private String name;
 	private double credits, gpa;
 	private int seats;
 	private Student[] roster = new Student[seats];
 	private int studentCount;
-	
-	
-	
+
+
+
 	public Course(String name, double credits, int seats, Student[] roster) {
-		
-		
-		
-	
-		
-		
+
+
+
+
+
+
 		this.name = name;
 		this.credits = credits;
 		this.seats = seats;
 		this.roster = roster;
 		this.studentCount = roster.length;
-		
+
 		System.out.println(studentCount);
 		System.out.println(seats);
 		System.out.println(this.roster.length);
-		
-		
-		
-//  this shows the problem, the roster decreases back to 4 instead of remaining at size 6
+
+
+
+		//  this shows the problem, the roster decreases back to 4 instead of remaining at size 6
 
 	}
-	
-	
-	
+
+
+
 	public String getName() {
 		return name;
 	}
@@ -90,55 +90,55 @@ public class Course {
 			return false;
 		}	
 		else {
-	for (int i = 0; i < studentCount; ++i ) {
-			if (roster[i].getId()==student.getId()) {
-				System.out.println(student.getName());
-				System.out.println("duplicate");
-				roster[i] = roster[i];
-				return false;				
-			}		
+			for (int i = 0; i < studentCount; ++i ) {
+				if (roster[i].getId()==student.getId()) {
+					System.out.println(student.getName());
+					System.out.println("duplicate");
+					roster[i] = roster[i];
+					return false;				
+				}		
+			}
+
+			Student[] newRoster = new Student[studentCount+1];		
+			for (int i = 0; i<studentCount; ++i) {	
+				newRoster[i] = roster[i];		
+			}
+
+			newRoster[studentCount] = student;
+			roster = newRoster;
+			studentCount++;	
+			return true;
+
 		}
-		
-		Student[] newRoster = new Student[studentCount+1];		
-		for (int i = 0; i<studentCount; ++i) {	
-			newRoster[i] = roster[i];		
-		}
-		
-		newRoster[studentCount] = student;
-		roster = newRoster;
-		studentCount++;	
-		return true;
-		
-		}
-	
+
 	}
-	
+
 	public boolean addStudent2(Student student) {	
 		if (studentCount >= seats) {
-		    return false;
-		  } // i understand this part above
+			return false;
+		} // i understand this part above
 
-		  for (int i = 0; i < studentCount; i++) { // i understand this
-		    if (roster[i].getId() == student.getId()) { // i understand this
+		for (int i = 0; i < studentCount; i++) { // i understand this
+			if (roster[i].getId() == student.getId()) { // i understand this
 				System.out.println(student.getName());
-		    	System.out.println("duplicate");
+				System.out.println("duplicate");
 
-		      return false; // i understand this
-		    }
-		  }
+				return false; // i understand this
+			}
+		}
 
-		  Student[] newRoster = new Student[studentCount + 1]; //declare new array with space for one more
-		  for (int i = 0; i < studentCount; i++) {
-		    newRoster[i] = roster[i]; //iterate through old array to transfer its contents to new array
-		  }
-		  newRoster[studentCount] = student;  // then fill in the last position of the array
-		  roster = newRoster; // reassign roster array to be the new array
-		  studentCount++; //increase the student count to reflect this addition
-		  System.out.println(studentCount);
-		  return true;
-	
+		Student[] newRoster = new Student[studentCount + 1]; //declare new array with space for one more
+		for (int i = 0; i < studentCount; i++) {
+			newRoster[i] = roster[i]; //iterate through old array to transfer its contents to new array
+		}
+		newRoster[studentCount] = student;  // then fill in the last position of the array
+		roster = newRoster; // reassign roster array to be the new array
+		studentCount++; //increase the student count to reflect this addition
+		System.out.println(studentCount);
+		return true;
+
 	}
-	
+
 	/* addStudent2
 	 * This code block is used to add a new student object to the roster array. Here's what it does step by step:
 
@@ -154,26 +154,26 @@ Increment the value of studentCount by 1 to reflect the addition of a new studen
 
 Return true to indicate that the student was added successfully.
 	 */
-	
-	
+
+
 	public String generateRoster() {	
 
-	//	 String [] a = new String[studentCount];
-			String b = "";
-	        for (int i = 0; i < studentCount; i++) {           
-	        	b = b + roster[i].getName() + "     ";	        	
-	        }        
-	        return b;
+		//	 String [] a = new String[studentCount];
+		String b = "";
+		for (int i = 0; i < studentCount; i++) {           
+			b = b + roster[i].getName() + "     ";	        	
+		}        
+		return b;
 	}
-	
+
 	public String generateRoster2(int index) { // using recursion...
-		  if (index == studentCount) {
-		    return "";
-		  }
-		  return roster[index].getName() + "     " + generateRoster2(index + 1);
+		if (index == studentCount) {
+			return "";
 		}
-	
-	
+		return roster[index].getName() + "     " + generateRoster2(index + 1);
+	}
+
+
 	public double averageGPA() {		
 		double gpaCollect = 0;		
 		for (int i = 0; i<studentCount;i++) {			
@@ -181,19 +181,43 @@ Return true to indicate that the student was added successfully.
 		}		
 		return gpaCollect/studentCount;
 	}
-	
 	public double averageGPA2(int index, double sum) { // using recursion...
-		  if (index == studentCount) {
-		    return sum / studentCount;
-		  }
-		  return averageGPA2(index + 1, sum + roster[index].getGpa());
+		if (index == studentCount) {
+			return sum / studentCount;
 		}
-	
-	
+		return averageGPA2(index + 1, sum + roster[index].getGpa());
+	}
+
 	public String toString() {		
 		String info = "";	
 		info = "Course name is " + getName() + " and number of credits is " + getCredits();	
 		return info;
 	}
-	}	
+
+
+	public boolean addStudent3(Student student) {		
+		if (studentCount>=seats){
+			return false;
+		}
+	//	---------------------------------------------------------	
+		for (int i = 0; i<studentCount; i++) {
+			if (roster[i].getId() == student.getId()) { 
+				System.out.println(student.getName());
+				System.out.println("duplicate");
+				return false; 
+			}	
+		}
+	//	---------------------------------------------------------------	
+		Student[] newRoster = new Student[studentCount+1];	
+
+		for (int i = 0; i<studentCount; i++) {
+			newRoster[i] = roster[i];
+		}
+		newRoster[studentCount] = student;	
+		roster = newRoster;
+		studentCount++;		
+		System.out.println("Seats remaining: " + (seats-studentCount));
+		return true;
+	}
+}	
 

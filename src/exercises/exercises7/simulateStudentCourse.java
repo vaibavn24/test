@@ -31,35 +31,35 @@ public class simulateStudentCourse {
 		
 		Student[] list = {bob, sally, john, carter, caroline, megan};
 		
-		Course math = new Course("math", 3.0, 100, list);
+		Course math = new Course("math", 4.0, 10, list);
 		System.out.println();
 
 		System.out.println(math.generateRoster());
 		System.out.println();
 
 		
-		System.out.println(math.addStudent2(bob));
+		System.out.println(math.addStudent3(bob));
 		System.out.println();
 
-		System.out.println(math.addStudent2(sally));
+		System.out.println(math.addStudent3(sally));
 		System.out.println();
 
-		System.out.println(math.addStudent2(john));
+		System.out.println(math.addStudent3(john));
 		System.out.println();
 
-		System.out.println(math.addStudent2(carter));
+		System.out.println(math.addStudent3(carter));
 		System.out.println();
 
-		System.out.println(math.addStudent2(caroline));
+		System.out.println(math.addStudent3(caroline));
 		System.out.println();
 
-		System.out.println(math.addStudent2(megan));
+		System.out.println(math.addStudent3(megan));
 		System.out.println();
 
-		System.out.println(math.addStudent2(frank));
+		System.out.println(math.addStudent3(frank));
 		System.out.println();
 
-		System.out.println(math.addStudent2(charles));
+		System.out.println(math.addStudent3(charles));
 		System.out.println();
 
 		System.out.println(math.generateRoster());
